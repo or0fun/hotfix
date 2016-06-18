@@ -6,7 +6,7 @@
 
 # 使用方法
 
-    compile 'com.baiwanlu.android:hotfix:1.0.0'
+    compile 'com.baiwanlu.android:hotfix:1.0.1'
 
 
     //在application的onCreate里调用
