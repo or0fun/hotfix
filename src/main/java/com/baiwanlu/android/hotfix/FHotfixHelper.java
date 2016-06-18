@@ -2,7 +2,6 @@ package com.baiwanlu.android.hotfix;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Environment;
 import android.text.TextUtils;
 
 import com.alipay.euler.andfix.patch.PatchManager;
@@ -60,12 +59,17 @@ public class FHotfixHelper {
                 return;
             }
 
-            new DownLoaderTask(hotfixFileUrl, Environment.getExternalStorageDirectory().getAbsolutePath(), fileName, new DownLoaderTask.DownloadCallBack() {
+            final File outPath = context.getFileStreamPath("hotfixPatch");
+            if (!outPath.exists()) {
+                outPath.mkdir();
+            }
+
+            new DownLoaderTask(hotfixFileUrl, outPath.getAbsolutePath(), fileName, new DownLoaderTask.DownloadCallBack() {
                 @Override
                 public void onPostExecute() {
                     try {
                         //获取补丁文件路径
-                        String path_all = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator+ fileName;
+                        String path_all = outPath.getAbsolutePath() + File.separator+ fileName;
                         FHotfixLog.d("addpatch", path_all);
                         mPatchManager.addPatch(path_all);
                     } catch (Throwable e) {
