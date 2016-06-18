@@ -18,5 +18,8 @@
     FHotfixHelper.init(context,  hotfileUrl, versioncode);
 
 
+#andfix 的apatch生成指导见 (文档)[http://ie8384.com/blog/?p=1251] 
+
+
 　　
     
